@@ -1,0 +1,12 @@
+ipconfig
+ping google.com
+tracert google.com
+nslookup 
+ google.com
+ exit
+netstat
+arp -a
+route print
+hostname
+getmac
+pathping google.com

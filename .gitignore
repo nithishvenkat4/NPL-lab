@@ -1,0 +1,6 @@
+NetBeans/
+*.class
+*.tmp
+
+bin/
+onj/
