@@ -1,31 +1,34 @@
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Scanner;
+import java.net.*;
+import java.io.*;
+import java.util.*;
 
 public class server{
-    public static void main(String [] args)throws Exception{
+    public static void main(String [] args) throws Exception{
 
-        ServerSocket server =new  ServerSocket(5000);
-        System.out.println("Server Opened Waiting For Connection");
+        ServerSocket server = new ServerSocket(5000);
+        System.out.println("Server Starteed waiting for Client");
 
         Socket socket = server.accept();
-        System.out.println("Connection Made Successfull");
+        System.out.println("Connection Established");
 
-        InputStream in = socket.getInputStream();
-        byte[] data = new byte[1024];
-        int bytes = in.read(data);
-
-        String rmsg = new String(data,0,bytes);
-
-        System.out.println("Recieved")
-
-
-
+        DataInputStream in = new DataInputStream(socket.getInputStream());
+        DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Msg to Send");
-        String msg = sc.nextLine();
+
+        System.out.println("Enter Message to Send from Server:");
+        String ss = sc.nextLine();
+
+        out.writeUTF(ss);
+        out.flush();
+        System.out.println("Message Sent:");
+
+        String sr = in.readUTF();
+        System.out.println("Message Recieved:");
+        System.out.println("Message :"+sr);
+
+        socket.close();
+        System.out.println("Connection Closed");
+        server.close();
     }
 }
