@@ -15,18 +15,18 @@ public class server{
         DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 
         Scanner sc = new Scanner(System.in);
-        int i=0;
 
-        System.out.println("Enter Message to Send from Server:");
-        String ss = sc.nextLine();
+        
+        System.out.println("Enter Number to Send from Server:");
+        int ss = sc.nextInt();
 
-        out.writeUTF(ss);
+        out.writeInt(ss);
         out.flush();
-        System.out.println("Message Sent:");
+        System.out.println("Number Sent:");
 
         String sr = in.readUTF();
-        System.out.println("Message Recieved:");
-        System.out.println("Message :"+sr);
+        System.out.println("Result Recieved:");
+        System.out.println("Number "+ss+" is :"+sr);
 
         socket.close();
         System.out.println("Connection Closed");
